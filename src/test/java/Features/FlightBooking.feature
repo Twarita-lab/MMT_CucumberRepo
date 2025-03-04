@@ -1,42 +1,41 @@
-#Author: your.email@your.domain.com
-#Keywords Summary :
-#Feature: List of scenarios.
-#Scenario: Business rule through list of steps with arguments.
-#Given: Some precondition step
-#When: Some key actions
-#Then: To observe outcomes or validation
-#And,But: To enumerate more Given,When,Then steps
-#Scenario Outline: List of steps for data-driven as an Examples and <placeholder>
-#Examples: Container for s table
-#Background: List of steps run before each of the scenarios
-#""" (Doc Strings)
-#| (Data Tables)
-#@ (Tags/Labels):To group Scenarios
-#<> (placeholder)
-#""
-## (Comments)
-#Sample Feature Definition Template
-@tag
-Feature: Title of your feature
-  I want to use this template for my feature file
+@FlightBooking
+Feature: Book Flights
 
-  @tag1
-  Scenario: Title of your scenario
-    Given I want to write a step with precondition
-    And some other precondition
-    When I complete action
-    And some other action
-    And yet another action
-    Then I validate the outcomes
-    And check more outcomes
+Background:
+		Given User is on MMT homepage
+    When User selects Mode of transport "Flights"
+    
 
-  @tag2
-  Scenario Outline: Title of your scenario outline
-    Given I want to write a step with <name>
-    When I check for the <value> in step
-    Then I verify the <status> in step
+  @OneWay
+  Scenario Outline: User should be able to book a One way flight
+    When User selects type of trip as <tripType>
+    And user selects "From" city <origin> 
+    And user selects "To" city <destination>
+    And Selects Departure date <departureDate>
+    And User selects Adults <adults>, Childern <children>, Infants <infants>
+    And User selects Choose travel class as <Travel class>
+    And Select special fare as <specialFare>
+    And User Click on "Search"
+    Then user lands on Flight Lists page with FilterType <filterType> selected
+    When user clicks on "VIEW PRICES" for flight based on criteria <flightSelectionCriteria>
+    Then All fare options should be displayed
+    And Select Book Now for Fare Type <fareType>
+    Then User should be moved to Flight confirmation page
+    And Verify following details
+    | <origin> | <destination> | <departureDate> | <specialFare> | <fareType> | Price |
+    When Trip Secure is selected as <tripSecure>
+    And Add passenger details for Passenger based on number of Adults <adults>, Childern <children>, Infants <infants>
+    And Add Booking details will be sent to Country Code <CountryCode>, Mobile No <MobileNo>, Email <Email>
+    And User Click on "Continue"
+    Then Verify passenger details
+    And User Click on "Confirm"
+    Then select a seat
+    And Verify the price is added to the Total Amount
+    Then User Click on "Continue"
+    And User Click on "Continue"
+    And User Click on "Proceed to pay"
+    Then User should be moved to Payment page.
 
     Examples: 
-      | name  | value | status  |
-      | name1 |     5 | success |
-      | name2 |     7 | Fail    |
+      | tripType | origin  | destination | departureDate	| adults | children | infants | Travel class            | specialFare  | filterType | flightSelectionCriteria | fareType | tripSecure | CountryCode | MobileNo   | Email         |
+      | OneWay  | Kolkata | Dubai       | Mar 19 2025	|     1 |        0 |       1 | Economy/Premium Economy | Armed Forces | Cheapest   | Earliest                | SPICEMAX | No         | India         | 8170043222 | abc@gmail.com |

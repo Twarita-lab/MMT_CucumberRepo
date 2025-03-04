@@ -1,0 +1,16 @@
+
+@FlightSearch @RoundTrip
+Scenario Outline: User should be able to search for Round Trip flight      # src/test/java/Features/FlightSearch.feature:36
+  Given User is on MMT homepage                                            # Twarita.cucumberFramework.stepDefinitions.LandingPage.user_is_on_mmt_homepage()
+  When User selects Mode of transport 
+  And User selects type of trip as 
+  Then "Return date" should be populated as "Current date + 2 days"
+  Then user selects "From" city 
+  And user selects "To" city 
+  And User selects Departure date as <departureDate>
+  And User selects Return date as <returnDate>
+  And User selects Adults <adults>, Childern <children>, Infants <infants>
+  And User selects Choose travel class as <Travel class>                   # Twarita.cucumberFramework.stepDefinitions.FlightSearch.user_selects_choose_travel_class(java.lang.String)
+  And Select special fare as <specialFare>                                 # Twarita.cucumberFramework.stepDefinitions.FlightSearch.select_special_fare(java.lang.String)
+  And click on "Search"
+  Then User lands of "Flight Lists" page

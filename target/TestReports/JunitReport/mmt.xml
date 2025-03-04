@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="Cucumber" time="3.634" tests="1" skipped="0" failures="1" errors="0">
+<testcase classname="Search different type os flights" name="User should be able to search for Round Trip flight - #1.1" time="3.616">
+<failure/>
+<system-out><![CDATA[
+Given User is on MMT homepage...............................................passed
+When User selects Mode of transport ........................................undefined
+And User selects type of trip as ...........................................skipped
+Then "Return date" should be populated as "Current date + 2 days"...........skipped
+Then user selects "From" city ..............................................skipped
+And user selects "To" city .................................................skipped
+And User selects Departure date as <departureDate>..........................skipped
+And User selects Return date as <returnDate>................................skipped
+And User selects Adults <adults>, Childern <children>, Infants <infants>....skipped
+And User selects Choose travel class as <Travel class>......................skipped
+And Select special fare as <specialFare>....................................skipped
+And click on "Search".......................................................skipped
+Then User lands of "Flight Lists" page......................................skipped
+]]></system-out>
+</testcase>
+</testsuite>
